@@ -3,4 +3,21 @@ name = "zone-builder"
 version = "0.1.0"
 edition = "2024"
 
+[lib]
+name = "zone_builder"
+path = "src/lib.rs"
+
+[[bin]]
+name = "zone-builder"
+path = "src/bin/main.rs"
+
 [dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+toml = "0.8"
+walkdir = "2.3"
+chrono = { version = "0.4", features = ["serde"] }
+clap = { version = "4.0", features = ["derive"] }
+
+[dev-dependencies]
+tempfile = "3.0"

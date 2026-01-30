@@ -1,0 +1,47 @@
+{
+  "meta": {
+    "title": "Gerald's Blog"
+  },
+  "list": [
+    {
+      "title": "The Future of AI in Software Development",
+      "date": "2025-01-20",
+      "update": "2025-01-22",
+      "summary": "Exploring how AI is transforming the software development landscape",
+      "path": "future-of-ai-in-software-development.md",
+      "collection": "essays"
+    },
+    {
+      "title": "Rust Best Practices",
+      "date": "2025-01-15",
+      "update": "2025-01-20",
+      "summary": "A comprehensive guide to Rust best practices for modern development",
+      "path": "rust-best-practices.md",
+      "collection": "tech"
+    },
+    {
+      "title": "Getting Started with WebAssembly and Rust",
+      "date": "2025-01-10",
+      "update": "2025-01-12",
+      "summary": "Learn how to use Rust for WebAssembly development",
+      "path": "webassembly-with-rust.md",
+      "collection": "tech"
+    },
+    {
+      "title": "Learn Git in 30 Minutes",
+      "date": "2025-01-05",
+      "update": "2025-01-08",
+      "summary": "A quick tutorial to learn the essential Git commands",
+      "path": "learn-git-quick-tutorial.md",
+      "collection": "tutorials"
+    },
+    {
+      "title": "Docker Basics for Beginners",
+      "date": "2025-01-01",
+      "update": "2025-01-03",
+      "summary": "Introduction to containerization with Docker",
+      "path": "docker-basics-beginners.md",
+      "collection": "tutorials"
+    }
+  ]
+}

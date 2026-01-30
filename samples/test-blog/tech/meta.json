@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Rust Best Practices",
+    "date": "2025-01-15",
+    "update": "2025-01-20",
+    "summary": "A comprehensive guide to Rust best practices for modern development",
+    "path": "rust-best-practices.md",
+    "collection": "tech"
+  },
+  {
+    "title": "Getting Started with WebAssembly and Rust",
+    "date": "2025-01-10",
+    "update": "2025-01-12",
+    "summary": "Learn how to use Rust for WebAssembly development",
+    "path": "webassembly-with-rust.md",
+    "collection": "tech"
+  }
+]

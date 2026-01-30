@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Learn Git in 30 Minutes",
+    "date": "2025-01-05",
+    "update": "2025-01-08",
+    "summary": "A quick tutorial to learn the essential Git commands",
+    "path": "learn-git-quick-tutorial.md",
+    "collection": "tutorials"
+  },
+  {
+    "title": "Docker Basics for Beginners",
+    "date": "2025-01-01",
+    "update": "2025-01-03",
+    "summary": "Introduction to containerization with Docker",
+    "path": "docker-basics-beginners.md",
+    "collection": "tutorials"
+  }
+]

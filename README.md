@@ -40,6 +40,20 @@ cargo run
 
 - `-p, --path <PATH>`: Path to the blog directory (default: ".")
 
+## Testing
+
+The project includes a sample test blog directory for testing purposes:
+
+```bash
+# Use the included test script
+./test_samples.sh
+
+# Or run directly with the sample directory
+cargo run -- -p ./samples/test-blog
+```
+
+The sample test blog directory (`samples/test-blog`) contains example articles in different categories for testing the application.
+
 ## Blog Directory Structure
 
 The tool processes blog directories with the following structure:

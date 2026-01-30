@@ -1,0 +1,20 @@
+[
+  {
+    "id": 0,
+    "title": "Essays",
+    "remark": "Essays articles",
+    "dir": "essays"
+  },
+  {
+    "id": 1,
+    "title": "Tutorials",
+    "remark": "Tutorials articles",
+    "dir": "tutorials"
+  },
+  {
+    "id": 2,
+    "title": "Tech",
+    "remark": "Tech articles",
+    "dir": "tech"
+  }
+]

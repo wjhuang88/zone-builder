@@ -15,6 +15,7 @@ pub struct MetaInfo {
 pub struct NotebookEntry {
     pub id: usize,
     pub title: String,
+    pub subtitle: String,
     pub remark: String,
-    pub dir: String,
+    pub path: String,
 }

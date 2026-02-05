@@ -179,11 +179,13 @@ impl BlogProcessor {
                         .unwrap_or(false);
 
                     if has_md_files {
+                        let path = dir_name.to_string();
                         let notebook = NotebookEntry {
                             id: notebooks.len(),
-                            title: capitalize_first(dir_name.as_ref()),
-                            remark: format!("{} articles", capitalize_first(dir_name.as_ref())),
-                            dir: dir_name.to_string(),
+                            title: capitalize_first(path.as_ref()),
+                            subtitle: path.to_uppercase(),
+                            remark: format!("{} articles", capitalize_first(path.as_ref())),
+                            path: path,
                         };
                         notebooks.push(notebook);
                     }

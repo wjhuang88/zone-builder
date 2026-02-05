@@ -1,5 +1,6 @@
 use crate::models::*;
 use crate::Article;
+use std::collections::HashMap;
 use std::fs;
 use std::path::Path;
 use walkdir::WalkDir;
@@ -49,18 +50,6 @@ impl BlogProcessor {
 
         let json_content = serde_json::to_string_pretty(&articles)?;
         fs::write(&meta_path, json_content)?;
-
-        Ok(())
-    }
-
-    pub fn update_root_json_files(
-        &self,
-        article: &Article,
-    ) -> Result<(), Box<dyn std::error::Error>> {
-        self.update_root_file("latest.json", article, 5)?;
-        self.update_root_file("recommended.json", article, 5)?;
-        self.update_notebooks_json()?;
-        self.update_index_json(article)?;
 
         Ok(())
     }
@@ -201,9 +190,84 @@ impl BlogProcessor {
         Ok(())
     }
 
+    fn update_category_meta_from_list(
+        &self,
+        category: &str,
+        articles: &[Article],
+    ) -> Result<(), Box<dyn std::error::Error>> {
+        let meta_path = Path::new(&self.blog_dir).join(category).join("meta.json");
+
+        let mut sorted_articles = articles.to_vec();
+        sorted_articles.sort_by(|a, b| b.date.cmp(&a.date));
+
+        let json_content = serde_json::to_string_pretty(&sorted_articles)?;
+        fs::write(&meta_path, json_content)?;
+
+        Ok(())
+    }
+
+    fn update_all_root_json_files(
+        &self,
+        all_articles: &[Article],
+    ) -> Result<(), Box<dyn std::error::Error>> {
+        self.update_root_file_from_list("latest.json", all_articles, 5)?;
+
+        self.update_root_file_from_list("recommended.json", all_articles, usize::MAX)?;
+
+        self.update_notebooks_json()?;
+
+        self.update_index_json_from_list(all_articles)?;
+
+        Ok(())
+    }
+
+    fn update_root_file_from_list(
+        &self,
+        filename: &str,
+        all_articles: &[Article],
+        max_count: usize,
+    ) -> Result<(), Box<dyn std::error::Error>> {
+        let file_path = Path::new(&self.blog_dir).join(filename);
+
+        let mut sorted_articles = all_articles.to_vec();
+        sorted_articles.sort_by(|a, b| b.date.cmp(&a.date));
+
+        if max_count != usize::MAX && sorted_articles.len() > max_count {
+            sorted_articles.truncate(max_count);
+        }
+
+        let json_content = serde_json::to_string_pretty(&sorted_articles)?;
+        fs::write(&file_path, json_content)?;
+
+        Ok(())
+    }
+
+    fn update_index_json_from_list(
+        &self,
+        all_articles: &[Article],
+    ) -> Result<(), Box<dyn std::error::Error>> {
+        let file_path = Path::new(&self.blog_dir).join("index.json");
+
+        let mut sorted_articles = all_articles.to_vec();
+        sorted_articles.sort_by(|a, b| b.date.cmp(&a.date));
+
+        let index_data = IndexJson {
+            meta: MetaInfo {
+                title: "Gerald's Blog".to_string(),
+            },
+            list: sorted_articles,
+        };
+
+        let json_content = serde_json::to_string_pretty(&index_data)?;
+        fs::write(&file_path, json_content)?;
+
+        Ok(())
+    }
+
     pub fn process_directory(&self) -> Result<(), Box<dyn std::error::Error>> {
         let blog_path = Path::new(&self.blog_dir);
         let mut all_articles = Vec::new();
+        let mut articles_by_category: HashMap<String, Vec<Article>> = HashMap::new();
 
         for entry in WalkDir::new(blog_path) {
             let entry = entry?;
@@ -246,18 +310,36 @@ impl BlogProcessor {
                             existing_filename == article_filename
                         }) {
                             all_articles.push(article.clone());
+
+                            if let Some(ref category) = article.collection {
+                                articles_by_category
+                                    .entry(category.clone())
+                                    .or_insert_with(Vec::new)
+                                    .push(article.clone());
+                            }
                         }
                     }
                 }
             }
         }
 
-        for article in &all_articles {
-            if let Some(category) = &article.collection {
-                self.update_category_meta(category, &article)?;
-            }
-            self.update_root_json_files(&article)?;
+        for (category, category_articles) in &articles_by_category {
+            self.update_category_meta_from_list(category, category_articles)?;
         }
+
+        self.update_all_root_json_files(&all_articles)?;
+
+        Ok(())
+    }
+
+    pub fn update_root_json_files(
+        &self,
+        article: &Article,
+    ) -> Result<(), Box<dyn std::error::Error>> {
+        self.update_root_file("latest.json", article, 5)?;
+        self.update_root_file("recommended.json", article, usize::MAX)?;
+        self.update_notebooks_json()?;
+        self.update_index_json(article)?;
 
         Ok(())
     }

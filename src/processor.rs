@@ -169,11 +169,21 @@ impl BlogProcessor {
 
                     if has_md_files {
                         let path = dir_name.to_string();
+
+                        let title = {
+                            let name_txt_path = dir_path.join("name.txt");
+                            if name_txt_path.exists() {
+                                fs::read_to_string(&name_txt_path)?.trim().to_string()
+                            } else {
+                                capitalize_first(&path)
+                            }
+                        };
+
                         let notebook = NotebookEntry {
                             id: notebooks.len(),
-                            title: capitalize_first(path.as_ref()),
+                            title,
                             subtitle: path.to_uppercase(),
-                            remark: format!("{} articles", capitalize_first(path.as_ref())),
+                            remark: format!("{} articles", capitalize_first(&path)),
                             path: path,
                         };
                         notebooks.push(notebook);

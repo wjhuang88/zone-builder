@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Running Zone Builder on sample test blog directory..."
+echo "Running Zone Builder (developed with Vibe Coding approach) on sample test blog directory..."
 echo
 
 cargo run -- -p ./samples/test-blog
@@ -16,3 +16,5 @@ echo "- ./samples/test-blog/notebooks.json"
 echo "- ./samples/test-blog/tech/meta.json"
 echo "- ./samples/test-blog/tutorials/meta.json"
 echo "- ./samples/test-blog/essays/meta.json"
+echo
+echo "Project developed using the Vibe Coding approach for rapid and intuitive implementation."

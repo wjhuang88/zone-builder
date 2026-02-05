@@ -1,5 +1,7 @@
 # Zone Builder - Architecture
 
+This project was developed using the Vibe Coding approach, emphasizing intuitive development with AI assistance for rapid prototyping and implementation.
+
 ## Project Structure
 
 The Zone Builder project follows Rust best practices with a modular structure:
@@ -21,6 +23,8 @@ zone-builder/
 ```
 
 ## Module Breakdown
+
+The Vibe Coding approach enabled rapid modularization of functionality:
 
 ### `lib.rs`
 Main library module that exports all public components.
@@ -54,8 +58,11 @@ Main library module that exports all public components.
 2. **Scalable**: Easy to add new functionality to specific modules
 3. **Testable**: Each module can be tested independently
 4. **Maintainable**: Well-defined interfaces between components
+5. **AI-Assisted Development**: Developed using the Vibe Coding approach for rapid implementation
 
 ## Dependencies
+
+The Vibe Coding approach helped efficiently incorporate these dependencies:
 
 - `clap`: Command-line argument parsing
 - `serde`/`serde_json`: JSON serialization/deserialization

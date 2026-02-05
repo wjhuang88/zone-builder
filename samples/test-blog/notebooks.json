@@ -2,19 +2,22 @@
   {
     "id": 0,
     "title": "Essays",
+    "subtitle": "ESSAYS",
     "remark": "Essays articles",
-    "dir": "essays"
+    "path": "essays"
   },
   {
     "id": 1,
     "title": "Tutorials",
+    "subtitle": "TUTORIALS",
     "remark": "Tutorials articles",
-    "dir": "tutorials"
+    "path": "tutorials"
   },
   {
     "id": 2,
     "title": "Tech",
+    "subtitle": "TECH",
     "remark": "Tech articles",
-    "dir": "tech"
+    "path": "tech"
   }
 ]

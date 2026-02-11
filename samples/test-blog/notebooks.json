@@ -1,21 +1,21 @@
 [
   {
     "id": 0,
-    "title": "Essays",
+    "title": "Essays and Thoughts",
     "subtitle": "ESSAYS",
     "remark": "Essays articles",
     "path": "essays"
   },
   {
     "id": 1,
-    "title": "Tutorials",
+    "title": "Tutorials and Guides",
     "subtitle": "TUTORIALS",
     "remark": "Tutorials articles",
     "path": "tutorials"
   },
   {
     "id": 2,
-    "title": "Tech",
+    "title": "Technology Articles",
     "subtitle": "TECH",
     "remark": "Tech articles",
     "path": "tech"
